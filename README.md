@@ -12,7 +12,6 @@ Check the URLs:
 
 	./check-urls.sh < urls.txt > urls-checked.txt
 
-
 # TODO
 
-* What do about squatted domains like http://www.axis-of-aevil.org/ ?
+* How to detect 200 responding squatted domains like http://www.axis-of-aevil.org/ ?
