@@ -1,6 +1,6 @@
 #!/bin/sh
 
-while read mdwn url
+while IFS=: read -r mdwn url
 do
 	set -- $(curl -m5 -w '%{http_code} %{url_effective}' -L -s -I --output /dev/null $url)
 	if test "$url" != "$2" # Is the original URL the same as the url_effective ?
