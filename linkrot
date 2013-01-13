@@ -1,5 +1,19 @@
 #!/bin/bash
-#verbose=1
+OPTIND=1         # Reset in case getopts has been used previously in the shell.
+verbose=0
+
+while getopts "v" opt
+do
+    case "$opt" in
+        v)  verbose=1
+            ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
 test -e "$1" || exit
 grep -H -r --only-matching --perl-regexp "http(s?):\/\/[^ \"\(\)\<\>\]]*" $1 | sort | uniq | sed 's/:/ /' |
 while read -r file url
@@ -9,7 +23,7 @@ do
 	then # if not, append the new URL on the line
 		echo -e "$1\t$file\t${url}\t$2"
 	else
-		test "$verbose" || { test "$1" -eq "200" && continue; }
+		test "$verbose" -gt 0 || { test "$1" -eq "200" && continue; }
 		echo -e "$1\t$file\t$url"
 	fi
 done
