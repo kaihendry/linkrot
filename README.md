@@ -1,6 +1,6 @@
-# Script to find dead / moved linked on Web pages
+# Bash script to find dead / moved links on local Web pages
 
-	linkrot <web pages>
+	linkrot *.{mdwn,html}
 
 Optional arguments:
 
